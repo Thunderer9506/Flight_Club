@@ -1,8 +1,11 @@
 import requests
+from dotenv import load_dotenv
+import os
+load_dotenv()
 
-endpoint = "your shetty endpoint"
+endpoint = "https://api.sheety.co/4a4614d6c902f66b63975acc1b55ba06/flightclub/user"
 head = {
-    "Authorization":"your authorization code"
+    "Authorization":"Bearer 1DW6fJPnWotRlBNYv7SWeBd2xg8"
 }
 first_name = input("Enter your first name: ")
 last_name = input("Enter your last name: ")
