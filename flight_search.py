@@ -1,7 +1,10 @@
 import requests
 from flight_data import FlightData
-ENDPOINT = "https://api.tequila.kiwi.com"
-API = "Your Api"
+from dotenv import load_dotenv
+import os
+load_dotenv()
+ENDPOINT = os.getenv("TEQUILA_ENDPOINT")
+API = os.getenv("TEQUILA_API")
 
 class FlightSearch:
     def __init__(self):
@@ -52,3 +55,4 @@ class FlightSearch:
             )
             print(f"{flight_data.destination_city}: ₹{flight_data.price}")
             return flight_data
+        
