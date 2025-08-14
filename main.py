@@ -12,7 +12,6 @@ ORIGIN_CITY_IATA = "DEL"
 if sheet_Data[0]["iataCode"] == "":
     for row in sheet_Data:
         row["iataCode"] = flight_search.get_destination_codes(row["city"])
-    print(f"Sheet_Data:\n {sheet_Data}")
 
     data_manager.destination_data = sheet_Data
     data_manager.update_destination_codes()
@@ -37,5 +36,3 @@ for destination in sheet_Data:
             print(message)
         notificationmanger.send_msg(message)
         notificationmanger.send_email(message,link)
-
-    
