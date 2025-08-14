@@ -1,27 +1,30 @@
 from twilio.rest import Client
 import smtplib
 import requests
+from dotenv import load_dotenv
+import os
+load_dotenv()
 
-acc_sid = "your account sid"                                        
-auth_token = "your authentication token"
+acc_sid = os.getenv("TWILIO_ACC_SID")                                    
+auth_token = os.getenv("TWILIO_ACC_TOKEN")
 
 class NotificationManager:
     def send_msg(self,body):
         client = Client(acc_sid,auth_token)
         message = client.messages.create(
             body=body,
-            from_= "number that is provided to you",
-            to = "your number"
+            from_=os.getenv("TWILIO_PHONE_FROM"),
+            to =os.getenv("TWILIO_PHONE_TO")
         )
         
-        print(message.sid)
+        print(message.body)
     def send_email(self,body,link):
-        myemail = "Your email address"
-        password = "your password"
+        myemail =os.getenv("MY_EMAIL")
+        password =os.getenv("MY_EMAIL_PASSWORD")
 
-        sheety_endpoint = "your sheety endpoint"
+        sheety_endpoint = os.getenv("SHEETY_ENDPOINT")+"/user"
         head_sheety = {
-            "Authorization":"your authorization code"
+            "Authorization":os.getenv("SHEETY_AUTHORIZATION")
         }
         response = requests.get(url=sheety_endpoint,headers=head_sheety)
         data = response.json()
